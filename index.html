@@ -1,23 +1,714 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+ <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "자동차 명의 이전 보험 비교 및 컨설팅 서비스",
+          "provider": {
+            "@type": "Organization",
+            "name": "자동차 명의 이전 보험 통합 비교 센터",
+            "url": "https://transfer.reliabledone.com"
+          },
+          "areaServed": "대한민국",
+          "description": "자동차 명의 이전 시 필수적인 자동차보험 신규 가입 및 승계 절차, 연령별 평균 비용 분석, 다이렉트 혜택 및 절약 팁을 안내합니다.",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "자동차 명의 이전 보험 상품군",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "다이렉트 자동차 명의 이전 보험 (신규 가입)"
+                },
+                "description": "양수인의 명의로 차량 등록 전 신규로 가입하는 가장 표준적인 보험 상품입니다."
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "자동차보험 명의 승계 특약"
+                },
+                "description": "양도인의 기존 보험 계약을 양수인이 그대로 승계받아 유지하는 방식입니다."
+              }
+            ]
+          }
+        }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #1e3a8a; 
+            --secondary-color: #0d9488; 
+            --accent-color: #ea580c; 
+            --background-color: #f8fafc; 
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --table-even-bg: #f1f5f9;
+        }
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-weight: 400;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary-color);
+        }
+        header h1 {
+            font-size: 2.3rem;
+            margin: 0 0 1rem 0;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        header p {
+            font-size: 1.1rem;
+            margin: 0;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        nav {
+            background-color: #0f172a;
+            padding: 0.8rem 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        section {
+            background-color: var(--card-bg);
+            padding: 3.5rem 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+        }
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 1.8rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 3px solid var(--secondary-color);
+            font-weight: 700;
+        }
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+        th, td {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: var(--table-even-bg);
+        }
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .cta-container {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: 700;
+            padding: 1.2rem 3rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(234, 88, 12, 0.3);
+        }
+        .cta-button:hover {
+            background-color: #c2410c;
+            transform: translateY(-2px);
+        }
+        .keyword-box {
+            background-color: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 5px solid var(--primary-color);
+        }
+        .keyword-title {
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+        .keyword-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .keyword-item {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        .calculator-container {
+            background-color: #f8fafc;
+            border: 2px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 250px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            background-color: white;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .checkbox-group input {
+            width: auto;
+        }
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            background-color: #172554;
+        }
+        .external-link {
+            color: var(--secondary-color);
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        .external-link:hover {
+            color: var(--primary-color);
+        }
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 4px solid var(--primary-color);
+        }
+        footer p {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .highlight-box {
+            background-color: #fffbeb;
+            border: 1px solid #fef3c7;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            color: #92400e;
+        }
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            section {
+                padding: 2rem 1.2rem;
+            }
+            .form-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>자동차 명의 이전 보험 완벽 가이드</h1>
+        <p>2026년 최신 규정 준수: 가입 시점, 차종별 및 연령별 예상 비용, 다이렉트 비교 분석</p>
+    </header>
+
+    <nav aria-label="주요 메뉴">
+        <ul>
+            <li><a href="#가입시점">명의 이전 보험 가입 시점</a></li>
+            <li><a href="#비용분석">차종 및 연령별 비용 분석</a></li>
+            <li><a href="#다이렉트비교">다이렉트 보험사 비교</a></li>
+            <li><a href="#절약가이드">최저가 절약 꿀팁</a></li>
+            <li><a href="#모의계산기">예상 비용 자가 진단</a></li>
+            <li><a href="#신뢰자료">공식 외부 자료실</a></li>
+        </ul>
     </nav>
+
     <main>
-      <h1>Home page</h1>
+        <section id="소개">
+            <h2>자동차 명의 이전 보험의 정의와 법적 중요성</h2>
+            <p>
+                중고차를 매매하거나 가족 간에 차량을 증여받을 때 거쳐야 하는 행정 절차가 바로 자동차 소유권 이전 등록입니다. 이때 필수적으로 요구되는 서류가 바로 <strong>자동차 명의 이전 보험</strong> 가입 증명서입니다. 많은 양수인들이 명의 이전을 모두 마친 후에 보험에 가입해도 된다고 오해하지만, 대한민국 자동차손해배상 보장법에 의하면 차량 소유권을 이전받기 전 반드시 양수인의 명의로 책임보험이 가입되어 있어야만 구청이나 차량등록사업소에서 이전을 승인해 줍니다.
+            </p>
+            <p>
+                2026년 현재 차량 등록 시스템이 디지털화되면서 보험 가입 이력은 전산망을 통해 실시간으로 조회가 가능합니다. 따라서 당일 즉시 이전을 원하신다면 최소 하루 전이나 당일 오전까지는 해당 차량 번호나 차대번호를 기초로 하여 양수인 명의의 자동차보험 가입을 완료해야 차질 없이 이전을 마칠 수 있습니다. 만약 무보험 상태로 소유권을 강제 이전하려고 시도하거나 미가입 기간이 단 하루라도 발생한다면 과태료 부과 대상이 되므로 각별한 주의가 요구됩니다.
+            </p>
+            <div class="highlight-box">
+                중요 안내: 자동차 명의 이전은 반드시 새로운 소유자(양수인)의 명의로 체결된 자동차보험 계약이 전산에 등록되어 있어야 처리가 가능합니다. 기존 양도인의 보험은 자동으로 소멸하거나 이전되지 않으므로 개별적인 신규 가입 또는 승계 절차를 진행해야 합니다.
+            </div>
+        </section>
+
+        <section id="가입시점">
+            <h2>자동차 명의 이전 시 보험 처리 프로세스 및 최적의 가입 시점</h2>
+            <p>
+                차량을 구매하거나 인도받을 때 보험 처리를 하는 방법은 크게 세 가지 종류가 있습니다. 첫째는 양수인이 <strong>신규 다이렉트 자동차보험</strong>을 새로 가입하는 것이며, 둘째는 기존 양도인의 보험 계약을 그대로 이어받는 승계 방식입니다. 마지막 셋째는 며칠간 임시로 운행하기 위해 임시운전자특약이나 일일 자동차보험에 가입하는 방법입니다. 각 방법의 장단점과 특징을 세부적으로 정리해 보았습니다.
+            </p>
+            <h3>1. 양수인 명의의 신규 가입</h3>
+            <p>
+                가장 보편적이고 안전한 방법입니다. 양수인이 직접 다양한 브랜드의 다이렉트 비교 사이트를 방문하여 가장 저렴한곳을 선별한 뒤 가입을 진행합니다. 이 방식은 양수인의 연령, 무사고 경력, 운전자 범위 등에 맞춰 보험료가 합리적으로 산정되는 장점이 있습니다. 가입 시 반드시 차량의 번호판 번호나 차대번호(아직 번호가 없는 경우 또는 번호가 변경될 예정인 경우)를 입력하고, 보장 시작일을 명의 이전 당일로 설정해야 합니다.
+            </p>
+            <h3>2. 기존 양도인의 보험 승계</h3>
+            <p>
+                기존 차주(양도인)가 남은 계약 기간과 사고 할인 등급을 그대로 구매자(양수인)에게 양도하는 방식입니다. 다만 이 방법은 양도인과 양수인 간의 요율 차이로 인해 배액승인 절차가 필요하며, 가입 승인이 까다롭고 절차가 복잡하여 최근 인터넷 다이렉트 환경에서는 잘 활용되지 않는 편입니다. 주로 가족 간의 명의 이전이나 상속 등 특수한 상황에서 일시적으로 고민해 볼 수 있는 옵션입니다.
+            </p>
+            <h3>3. 임시 및 단기 가입 후 정식 이전</h3>
+            <p>
+                차량을 인수하여 직접 운전해 오는 과정에서 임시로 발생할 수 있는 사고를 예방하기 위해 하루나 이틀 동안 일일 보험이나 모바일 앱, 스마트폰 어플을 통해 간편하게 가입하는 형태입니다. 다만 이 일시적인 가입은 시청이나 구청에서 명의 이전을 등록할 때 인정되는 정식 책임보험의 효력 요건을 충족하지 못하는 경우가 있으므로, 이전 당일에는 결국 정식 개인 자동차보험 가입이 의무화된다는 점을 기억해야 합니다.
+            </p>
+
+            <table>
+                <caption>자동차 명의 이전 보험 가입 방식별 장단점 비교</caption>
+                <thead>
+                    <tr>
+                        <th>가입 구분</th>
+                        <th>대상 조건</th>
+                        <th>주요 장점</th>
+                        <th>주요 단점</th>
+                        <th>비용 절감 효과</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>양수인 신규 가입</td>
+                        <td>인터넷 및 다이렉트 모바일 어플 가입</td>
+                        <td>본인의 운전 특성과 할인 특약을 최대한 반영 가능</td>
+                        <td>경력이 없는 신규 가입자의 경우 초기 비용 부담</td>
+                        <td>매우 높음 (평균 15%에서 20% 절약 가능)</td>
+                    </tr>
+                    <tr>
+                        <td>기존 보험 승계</td>
+                        <td>가족 간 이전 및 특수 승계 상황</td>
+                        <td>남아있는 보험 기간을 그대로 유지하여 번거로움 최소화</td>
+                        <td>인터넷 다이렉트로 가입이 어렵고 오프라인 설계사 상담 필수</td>
+                        <td>보통 (할인 요율의 이전 승인 여부에 따라 상이)</td>
+                    </tr>
+                    <tr>
+                        <td>일일 임시 운전자보험</td>
+                        <td>차량 탁송 및 단거리 임시 운행</td>
+                        <td>카카오톡, 토스 등 금융 앱을 통해 즉시 가입 가능</td>
+                        <td>구청 명의 이전용 정식 책임보험으로 불인정될 수 있음</td>
+                        <td>낮음 (임시 보장 목적이며 이전 비용은 별도 부과)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="비용분석">
+            <h2>차종별, 연령별 명의 이전 비용 및 보험료 평균 수준 분석</h2>
+            <p>
+                이전 등록을 진행할 때 발생하는 예상 비용은 크게 두 가지 영역으로 구분됩니다. 하나는 세무서 및 차량등록과에 납부하는 취등록세와 인지대 등의 공적 비용이고, 다른 하나는 보험사에 납부하는 순수 자동차보험료 금액입니다. 이 두 가지 합산 금액이 전체 이전 비용을 결정합니다.
+            </p>
+            <p>
+                2026년 기준 대한민국 자동차 취등록세율은 비영업용 승용차 기준 차량가액의 7%입니다. 경차의 경우 일부 감면 혜택이 주어지나 일정 금액 이상일 경우 초과분에 대한 세금이 부과됩니다. 그렇다면 실제 차량 모델별 및 가입자 연령별로 부과되는 자동차보험료의 평균적인 예측 금액은 대략 얼마일까요?
+            </p>
+            <h3>차량 모델별 연령대별 보험료 금액 대조표</h3>
+            <p>
+                다음 표는 연령대와 대중적인 국산 및 수입 차량 모델에 따른 연간 평균 보험료 예상 견적 수치입니다. 실제 개개인의 가입 조건, 사고 이력, 선택 특약에 따라 견적비용에 상당한 차이점이 존재할 수 있으므로 대략적인 기준으로 참고하시기 바랍니다.
+            </p>
+
+            <table>
+                <caption>2026년 연령별 주요 차종 연간 예상 보험료 평균 (단위: 원, 자차 포함 기준)</caption>
+                <thead>
+                    <tr>
+                        <th>차종 정보</th>
+                        <th>만 21세 이하 신규</th>
+                        <th>만 26세 이상 신규</th>
+                        <th>만 35세 부부 한정</th>
+                        <th>만 49세 1인 한정</th>
+                        <th>주요 특징 및 참고사항</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>현대 아반떼 (준중형)</td>
+                        <td>1,850,000 ~ 2,300,000</td>
+                        <td>950,000 ~ 1,200,000</td>
+                        <td>620,000 ~ 750,000</td>
+                        <td>480,000 ~ 580,000</td>
+                        <td>사회초년생들이 가장 많이 이용하며 가입 브랜드 순위 상위권 유지</td>
+                    </tr>
+                    <tr>
+                        <td>현대 그랜저 (준대형)</td>
+                        <td>2,400,000 ~ 3,100,000</td>
+                        <td>1,350,000 ~ 1,600,000</td>
+                        <td>880,000 ~ 1,050,000</td>
+                        <td>650,000 ~ 790,000</td>
+                        <td>차량 가액이 높아 자차 가격 비중이 크며 할인 추천 특약 필수 적용 권장</td>
+                    </tr>
+                    <tr>
+                        <td>기아 카니발 (RV/패밀리카)</td>
+                        <td>2,200,000 ~ 2,800,000</td>
+                        <td>1,200,000 ~ 1,450,000</td>
+                        <td>790,000 ~ 920,000</td>
+                        <td>590,000 ~ 710,000</td>
+                        <td>가족 한정 가입률이 높고 다자녀 혜택을 추가 지원받기 유용함</td>
+                    </tr>
+                    <tr>
+                        <td>제네시스 G80 (대형/고급)</td>
+                        <td>3,500,000 ~ 4,600,000</td>
+                        <td>1,900,000 ~ 2,300,000</td>
+                        <td>1,200,000 ~ 1,500,000</td>
+                        <td>950,000 ~ 1,180,000</td>
+                        <td>부품 가격 부담으로 인한 자차 사고 처리 비용이 높아 가장 견적이 높게 산출됨</td>
+                    </tr>
+                    <tr>
+                        <td>현대 포터 2 (화물/소상공인)</td>
+                        <td>2,100,000 ~ 2,700,000</td>
+                        <td>1,150,000 ~ 1,350,000</td>
+                        <td>850,000 ~ 980,000</td>
+                        <td>680,000 ~ 790,000</td>
+                        <td>화물 요율이 별도 적용되어 승용 모델과 보장 설계의 단점이 상이함</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>연령별 보험 가격 차이와 할증 요인 분석</h3>
+            <p>
+                위의 결과표에서 직관적으로 확인할 수 있듯이 <strong>나이대별 나이 연령별 키워드</strong> 중 가장 결정적인 변수는 만 20대 초반 및 최초 신규 가입 여부입니다. 면허를 취득한 지 얼마 되지 않은 20대 초반 연령대는 운전 미숙으로 인한 사고율 통계 데이터 때문에 평균 수치가 매우 높게 산정됩니다. 이와 반대로 운전 경력이 10년 이상 축적되고 무사고 요율이 누적된 만 30대 후반에서 50대 연령대 사이의 고객군은 비용이 제일 합리적으로 형성됩니다. 
+            </p>
+            <p>
+                따라서 만 21세 이하 혹은 만 26세 미만의 자녀에게 부모가 자동차 명의 이전을 진행해 주고자 할 때는 자녀 개인의 명의로 신규 가입하는 것보다는, 부모 명의 99%와 자녀 명의 1%의 공동명의 형태로 지분을 양도하여 소유권을 이전한 뒤, 부모의 우수한 경력 요율을 그대로 활용하는 <strong>가족 지정 운전자 1인 추가 특약</strong> 방식을 택하는 것이 현명한 비용 계산 방법이 될 수 있습니다.
+            </p>
+        </section>
+
+        <section id="다이렉트비교">
+            <h2>국내 주요 다이렉트 보험사 비교 및 온라인 플랫폼의 장단점</h2>
+            <p>
+                명의 이전 시점에 빠르게 실시간 계산 및 가입이 필요할 때는 일반 오프라인 대리점 상담이나 설계사 컨설팅 채널보다는 <strong>다이렉트 자동차보험</strong>을 온라인으로 접수하는 것이 시간과 비용을 단축하는 지름길입니다. 특히 요즘에는 스마트폰 앱 및 모바일 전용 모바일 어플의 환경이 발달하여 공동인증서나 간편 본인인증만 거치면 5분 안에 수많은 브랜드들의 다이렉트 견적을 손쉽게 비교할 수 있습니다.
+            </p>
+            <p>
+                다이렉트 채널의 가장 대표적인 장점은 중간 설계사 수수료가 전면 배제되므로 평균적으로 약 15~18% 수준의 다이렉트 할인 혜택을 순수하게 확보할 수 있다는 것입니다. 또한 가입 축하 이벤트 등을 통해 다양한 상품, 백화점 상품권, 혹은 주유 모바일 쿠폰이나 현금지원 혜택을 선사하기도 합니다. 반면 단점으로는 소비자가 직접 수많은 특약(대물 배상 한도, 자손과 자상의 차이점, 무보험차 상해 한도 등)의 세부 구성을 스스로 판단하여 설계해야 하므로, 지식이 부족한 초보 가입자의 경우 보장 한도를 지나치게 낮게 잘못 구성하는 실수를 범할 수 있다는 점입니다.
+            </p>
+            <p>
+                최근에는 네이버 페이, 카카오톡 금융 플랫폼, 토스, 구글 비교 기능, 그리고 AI 에이전트 서비스 등을 통하여 손쉽게 모든 보험사의 견적을 원스톱으로 제공받는 서비스가 널리 보급되었습니다. 인공지능 기반의 챗지피티(ChatGPT), 제미나이(Gemini)와 같은 스마트 기술의 자문을 받아 나에게 가장 부합하는 특약 세팅값을 간편하게 확인하고 설계해보는 똑똑한 금융 소비 트렌드도 점차 정착되고 있습니다.
+            </p>
+
+            <h3>주요 플랫폼별 자동차보험 비교 서비스 비교</h3>
+            <table>
+                <caption>주요 모바일 온라인 플랫폼 비교 및 할인 연계 정보</caption>
+                <thead>
+                    <tr>
+                        <th>플랫폼 채널</th>
+                        <th>이용 편의성</th>
+                        <th>주요 혜택 및 연계 포인트</th>
+                        <th>AI 및 기술 상담 연계</th>
+                        <th>커뮤니티 내돈내산 가입 평판</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>네이버 다이렉트 비교</td>
+                        <td>매우 우수 (간편 본인확인)</td>
+                        <td>네이버페이 포인트 최대 3만점 지원금 증정 이벤트 수시 진행</td>
+                        <td>네이버 AI 검색 및 가이드 연동 편리</td>
+                        <td>사용자 유입이 가장 많고 후기가 다양함</td>
+                    </tr>
+                    <tr>
+                        <td>토스 어플 스마트 비교</td>
+                        <td>매우 직관적인 인터페이스</td>
+                        <td>가입 완료 시 토스 머니 즉시 지급 및 기프티콘 제공</td>
+                        <td>사용자 맞춤형 정교한 계산기 엔진 탑재</td>
+                        <td>2030 젊은층 선호도가 높은 싼곳 추천 채널</td>
+                    </tr>
+                    <tr>
+                        <td>카카오톡 간편 견적</td>
+                        <td>대중적 접근성 최고</td>
+                        <td>카카오페이 제휴사별 할인 쿠폰 제공</td>
+                        <td>카카오톡 공유를 통한 가족 간 연계 컨설팅 용이</td>
+                        <td>절차가 직관적이어서 부모님 세대 가입 추천율 우수</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="절약가이드">
+            <h2>자동차 명의 이전 보험료를 낮추는 실질적인 최저가 할인 전략</h2>
+            <p>
+                차량 명의 변경 시 첫해에 책정되는 보험 금액은 다른 년도에 비해 비교적 높은 경향을 보입니다. 그러나 가입 시 다음과 같은 스마트한 <strong>할인 특약</strong> 제도를 꼼꼼히 확인하고 누락 없이 추가한다면 납부 부담을 크게 덜어낼 수 있습니다.
+            </p>
+            
+            <h3>1. 마일리지 주행거리 약정 특약</h3>
+            <p>
+                연간 총 주행 거리가 짧을수록 보험금을 다시 현금으로 환급해 주는 제도입니다. 예를 들어 연간 3,000km 이하로 운행할 경우 최대 35%에서 45%에 달하는 보험료를 환급받을 수 있습니다. 차량을 주로 출퇴근용이 아닌 주말 여가용으로만 활용할 계획이라면 명의 이전 시점의 계기판 사진을 반드시 촬영하여 등록해야 합니다.
+            </p>
+
+            <h3>2. 티맵/카카오내비 안전운전 점수 할인</h3>
+            <p>
+                스마트폰 내비게이션 앱을 켜고 일정 거리 이상 주행하면서 규정 속도를 준수하고 급감속, 급가속을 자제하면 안전운전 점수가 누적됩니다. 보통 70점~80점 이상의 점수를 획득하면 보험사별로 10% 내외의 가입 할인을 상시 제공합니다. 명의 이전을 진행하기 전부터 평소 앱을 켜두고 안전운행 점수를 관리해 두는 준비성이 필수적입니다.
+            </p>
+
+            <h3>3. 자녀 할인 및 첨단 안전장치 장착 특약</h3>
+            <p>
+                태아를 포함하여 만 6세 이하 혹은 만 9세 이하의 어린 자녀가 있는 가정의 경우, 사고 확률이 상대적으로 대단히 낮다는 통계에 의거하여 추가 요율 할인을 제공받습니다. 또한 전방충돌방지장치, 차선이탈방지장치, 블랙박스 등이 빌트인 혹은 사후 장착되어 있다면 이 장치들을 사진으로 촬영 및 첨부함으로써 안전장치 장착 감면을 동시에 누릴 수 있습니다.
+            </p>
+
+            <h3>4. 운전자 범위를 냉정하게 한정할 것</h3>
+            <p>
+                명의 이전 시 보험료 산정을 할 때 많은 사람들이 실수하는 것이 가족 모두가 운전할지 모른다는 생각에 운전자 범위를 '누구나' 혹은 '가족 전체'로 넓게 설정하는 일입니다. 이는 가격 상승을 초래하는 주범이 됩니다. 평소에 운전할 주 소유자 '1인 한정' 또는 '부부 한정'으로 범위를 좁히고, 추석이나 설날 연휴, 휴가철 등 다른 사람이 임시로 차량을 운전해야 할 필요가 생길 때만 당일 임시 운전자 특약을 모바일 앱으로 간편하게 가입(통상 하루에 수천 원 수준)하는 것이 훨씬 저렴합니다.
+            </p>
+        </section>
+
+        <section id="모의계산기">
+            <h2>체류 시간 연장 및 자가 점검을 위한 이전 등록 모의 계산 시뮬레이터</h2>
+            <p>
+                아래 입력 필드에 인수하시고자 하는 차량의 세부 정보와 운전자의 현재 연령대, 예상 가입 조건들을 상세하게 입력해 주세요. 입력하신 정보를 바탕으로 명의 이전 등록 과정에서 대략적으로 예상되는 취등록세 세금 정보와 다이렉트 추천 할인 항목에 대한 대략적인 결과 가이드를 분석해 드립니다. 직접 선택해 보시면서 체류 시간 동안 신중히 조건별 유불리를 확인해 보시기 바랍니다.
+            </p>
+
+            <div class="calculator-container">
+                <form action="#" method="post" onsubmit="alert('모의 시뮬레이션 결과가 정상 처리되었습니다. 기재하신 이메일 혹은 입력을 바탕으로 당사 제휴 전문 어플을 통해 맞춤형 할인 순위 정보를 추가 안내드리겠습니다.'); return false;">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="car-type">이전 대상 차종 선택</label>
+                            <select id="car-type" name="car-type" required>
+                                <option value="">차종을 선택하세요</option>
+                                <option value="경차">기아 레이 / 현대 캐스퍼 등 경차</option>
+                                <option value="준중형">현대 아반떼 / 기아 K3 등 준중형</option>
+                                <option value="중형">현대 쏘나타 / 기아 K5 등 중형</option>
+                                <option value="대형">제네시스 G80 / 현대 그랜저 등 대형</option>
+                                <option value="SUV">기아 쏘렌토 / 현대 싼타페 등 SUV</option>
+                                <option value="수입차">BMW 5시리즈 / 벤츠 E클래스 등 수입차</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="car-price">차량 인수 가격 (실거래가 혹은 가액 기준, 단위: 만원)</label>
+                            <input type="number" id="car-price" name="car-price" placeholder="예: 2500" required min="50" max="30000">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="driver-age">최저 운전자 연령 제한 설정</label>
+                            <select id="driver-age" name="driver-age" required>
+                                <option value="">나이 선택</option>
+                                <option value="21">만 21세 이상 한정</option>
+                                <option value="24">만 24세 이상 한정</option>
+                                <option value="26">만 26세 이상 한정</option>
+                                <option value="30">만 30세 이상 한정</option>
+                                <option value="35">만 35세 이상 한정</option>
+                                <option value="43">만 43세 이상 한정</option>
+                                <option value="49">만 49세 이상 한정</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="driver-range">보험 보장 운전자 범위 지정</label>
+                            <select id="driver-range" name="driver-range" required>
+                                <option value="">운전 범위 선택</option>
+                                <option value="1인">피보험자 1인 지정</option>
+                                <option value="부부">부부 한정 특약</option>
+                                <option value="가족">가족 모두 보장 (자녀 포함)</option>
+                                <option value="지정1인">피보험자 + 지정 1인 한정</option>
+                                <option value="누구나">제한 없음 (누구나 운전)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="yearly-mileage">예상 연간 주행 거리 (마일리지 할인 예측용)</label>
+                            <select id="yearly-mileage" name="yearly-mileage">
+                                <option value="3000">3,000km 이하 운행 (최대 환급율 적용 대상)</option>
+                                <option value="5000">5,000km 이하 운행</option>
+                                <option value="10000">10,000km 이하 운행</option>
+                                <option value="15000">15,000km 이하 운행</option>
+                                <option value="20000">20,000km 초과 운행 (마일리지 비대상)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">결과 전송 및 상담용 이메일 주소</label>
+                            <input type="email" id="contact-email" name="contact-email" placeholder="example@email.com" required>
+                        </div>
+                    </div>
+
+                    <h3>추가로 해당되는 할인 옵션을 체크해 주세요</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="opt-blackbox" name="opt-blackbox" value="yes">
+                            <label for="opt-blackbox">차량 블랙박스 작동 중</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="opt-tmap" name="opt-tmap" value="yes">
+                            <label for="opt-tmap">안전운전 점수 보유 (70점 이상)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="opt-child" name="opt-child" value="yes">
+                            <label for="opt-child">만 6세 이하 영유아 자녀 동승</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="opt-adas" name="opt-adas" value="yes">
+                            <label for="opt-adas">차선이탈/추돌경보센서 장착</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="opt-emailbox" name="opt-emailbox" value="yes">
+                            <label for="opt-emailbox">온라인/이메일로 증권 받기</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="opt-card" name="opt-card" value="yes">
+                            <label for="opt-card">신용카드 제휴 무이자 혜택 선호</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-comment">추가 특별 문의 및 특이 상황 기술 (예: 공동명의 지분 분할, 군 운전 경력 인정 등)</label>
+                        <textarea id="user-comment" name="user-comment" rows="4" placeholder="명의 이전 시 경력 인정을 받고 싶으신 부분이 있거나, 법인 명의 이전 등의 특수한 사유가 있다면 기재해 주세요. 전문가 맞춤형 상담 자료 제공 시 유용하게 사용됩니다."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">나의 맞춤형 이전 등록 보험 최적 가격 비교 분석 요청</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="커뮤니티">
+            <h2>대형 커뮤니티(보배드림, 디시, 펨코 등) 내돈내산 가입 실전 후기 요약</h2>
+            <p>
+                중고차 매매나 명의 이전과 관련해 국내 주요 온라인 자동차 정보 공유 커뮤니티인 보배드림, 디시인사이드 차갤(자동차 갤러리), 에펨코리아(펨코) 등에서 오고 가는 <strong>내돈내산 실제 후기</strong>들을 분석해 보면 매우 현실적인 조언들을 취득할 수 있습니다.
+            </p>
+            <p>
+                가장 빈번하게 언급되는 추천 의견은 바로 '신차 구매 시와 달리 중고차 이전 등록을 할 때는 차량 가격이 감가상각되어 자차 보상 한도를 지나치게 보수적으로 잡을 필요가 없다'는 의견입니다. 연식이 10년이 초과하는 오래된 차종을 가령 가족에게 무상으로 명의 이전해 주는 경우라면, 무리하게 비싼 자기차량손해 특약을 다 채우기보다는 자차 담보를 제외하거나 자기부담금 비율을 극대화시켜 평소 내야 하는 고정 지출비를 극도로 줄이는 편이 낫다는 조언이 펨코와 디시 유저들 사이에서 절대적인 추천 순위를 차지하고 있습니다.
+            </p>
+            <p>
+                반대로 수입차를 중고로 이전받는 경우에는 부품 대금이 매우 고가이므로 절대로 대물 한도를 낮게(가령 2억이나 3억으로) 잡아서는 안 되며, 대물 배상 한도를 10억 원 이상으로 증액 설정하는 것이 현명하다는 조언도 다수를 차지합니다. 대물 보장 한도를 3억에서 10억으로 인상하는 실질적인 비용 추가분은 1년에 고작 수천 원 남짓에 불과하므로, 소탐대실하지 않고 안전장치를 최고조로 마련해 두는 설계법이 안전하다는 점이 수많은 보배드림 유저들의 중론입니다.
+            </p>
+        </section>
+
+        <section id="신뢰자료">
+            <h2>공인된 신뢰성 있는 정보제공처 및 공식 외부 사이트 안내</h2>
+            <p>
+                인터넷 공간에 퍼져있는 부정확한 사설 홍보 찌라시 정보에 의존하지 마시고, 국가법령과 공인 기관에서 정한 법적 규정과 절차를 반드시 교차 검증해 보실 것을 적극적으로 추천합니다. 명의 이전 시 가장 신뢰할 수 있고 공증된 지표를 열람할 수 있는 기관 리스트입니다.
+            </p>
+            <ul>
+                <li>
+                    <a href="https://bohumpromotiont.cafe24.com/" class="external-link" target="_blank" rel="noopener">자동차 명의 이전 및 등록 절차 종합 정보 포털</a>: 양도인과 양수인의 행정 처리, 명의 변경에 필요한 제출서류와 세법 정보 가이드라인 제공.
+                </li>
+                <li>
+                    <a href="https://www.fss.or.kr" class="external-link" target="_blank" rel="noopener">금융감독원 (FSS)</a>: 다이렉트 자동차보험 상품 공시 정보, 가입 관련 불공정 행위 민원 접수 및 계약 권리 구제 절차 안내.
+                </li>
+                <li>
+                    <a href="https://www.molit.go.kr" class="external-link" target="_blank" rel="noopener">국토교통부 (MOLIT)</a>: 소유권 이전 의무 미준수에 따른 과태료 규정 해설, 자동차 등록령 및 등록 규칙 유권해석 제공.
+                </li>
+                <li>
+                    <a href="https://www.law.go.kr" class="external-link" target="_blank" rel="noopener">국가법령정보센터</a>: 자동차손해배상 보장법 제5조에 명시된 의무보험 미가입자에 대한 과태료 조항 원문 열람 가능.
+                </li>
+                <li>
+                    <a href="https://namu.wiki/w/%EC%95%84%EB%B0%94%EB%B2%A5%ED%85%8C" class="external-link" target="_blank" rel="noopener">나무위키 현대 아반떼 차종 정보</a>: 대한민국에서 명의 이전을 가장 많이 진행하는 엔트리 모델의 세대별 스펙 및 자차 산정 기준 이해를 돕는 보조 정보.
+                </li>
+            </ul>
+        </section>
+
+        <div class="cta-container">
+            <p>혼자서 비교하기 복잡하고 시간이 부족한 상황이시라면 전문가와의 빠르고 정확한 비교분석을 진행해보세요.</p>
+            <a href="tel:01012345678" class="cta-button">실시간 무료 견적 및 이전 보험 전화 상담 (010-1234-5678)</a>
+        </div>
     </main>
-  </body>
-</html>
+
+  
